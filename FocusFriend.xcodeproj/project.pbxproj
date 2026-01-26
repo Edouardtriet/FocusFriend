@@ -8,14 +8,46 @@
 
 /* Begin PBXBuildFile section */
 		AAAAAA0100000001 /* FocusFriendApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAAAA0200000001 /* FocusFriendApp.swift */; };
-		AAAAAA0100000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAAAA0200000002 /* ContentView.swift */; };
+		BBBBBB0100000001 /* FocusTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBBBB0200000001 /* FocusTask.swift */; };
+		BBBBBB0100000002 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBBBB0200000002 /* AppSettings.swift */; };
+		BBBBBB0100000003 /* TaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBBBB0200000003 /* TaskManager.swift */; };
+		BBBBBB0100000004 /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBBBB0200000004 /* TimerManager.swift */; };
+		BBBBBB0100000005 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBBBB0200000005 /* SettingsManager.swift */; };
+		BBBBBB0100000006 /* MainPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBBBB0200000006 /* MainPanelView.swift */; };
+		BBBBBB0100000007 /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBBBB0200000007 /* TaskListView.swift */; };
+		BBBBBB0100000008 /* TaskRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBBBB0200000008 /* TaskRowView.swift */; };
+		BBBBBB0100000009 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBBBB0200000009 /* HistoryView.swift */; };
+		BBBBBB0100000010 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBBBB0200000010 /* SettingsView.swift */; };
+		BBBBBB0100000011 /* FloatingTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBBBB0200000011 /* FloatingTimerView.swift */; };
+		BBBBBB0100000012 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBBBB0200000012 /* EmptyStateView.swift */; };
+		BBBBBB0100000013 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBBBB0200000013 /* ProgressBarView.swift */; };
+		BBBBBB0100000014 /* CircularCheckbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBBBB0200000014 /* CircularCheckbox.swift */; };
+		BBBBBB0100000015 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBBBB0200000015 /* Constants.swift */; };
+		BBBBBB0100000016 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBBBB0200000016 /* SoundManager.swift */; };
+		BBBBBB0100000017 /* FloatingWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBBBB0200000017 /* FloatingWindowController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		AAAAAA0200000001 /* FocusFriendApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusFriendApp.swift; sourceTree = "<group>"; };
-		AAAAAA0200000002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		AAAAAA0200000003 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AAAAAA0300000001 /* FocusFriend.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FocusFriend.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BBBBBB0200000001 /* FocusTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusTask.swift; sourceTree = "<group>"; };
+		BBBBBB0200000002 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		BBBBBB0200000003 /* TaskManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskManager.swift; sourceTree = "<group>"; };
+		BBBBBB0200000004 /* TimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
+		BBBBBB0200000005 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
+		BBBBBB0200000006 /* MainPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPanelView.swift; sourceTree = "<group>"; };
+		BBBBBB0200000007 /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
+		BBBBBB0200000008 /* TaskRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRowView.swift; sourceTree = "<group>"; };
+		BBBBBB0200000009 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		BBBBBB0200000010 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		BBBBBB0200000011 /* FloatingTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingTimerView.swift; sourceTree = "<group>"; };
+		BBBBBB0200000012 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
+		BBBBBB0200000013 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
+		BBBBBB0200000014 /* CircularCheckbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularCheckbox.swift; sourceTree = "<group>"; };
+		BBBBBB0200000015 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		BBBBBB0200000016 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
+		BBBBBB0200000017 /* FloatingWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingWindowController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,8 +73,12 @@
 			isa = PBXGroup;
 			children = (
 				AAAAAA0200000001 /* FocusFriendApp.swift */,
-				AAAAAA0200000002 /* ContentView.swift */,
 				AAAAAA0200000003 /* Info.plist */,
+				BBBBBB0500000001 /* Models */,
+				BBBBBB0500000002 /* ViewModels */,
+				BBBBBB0500000003 /* Views */,
+				BBBBBB0500000004 /* Components */,
+				BBBBBB0500000005 /* Utilities */,
 			);
 			path = FocusFriend;
 			sourceTree = "<group>";
@@ -53,6 +89,58 @@
 				AAAAAA0300000001 /* FocusFriend.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		BBBBBB0500000001 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BBBBBB0200000001 /* FocusTask.swift */,
+				BBBBBB0200000002 /* AppSettings.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		BBBBBB0500000002 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				BBBBBB0200000003 /* TaskManager.swift */,
+				BBBBBB0200000004 /* TimerManager.swift */,
+				BBBBBB0200000005 /* SettingsManager.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		BBBBBB0500000003 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BBBBBB0200000006 /* MainPanelView.swift */,
+				BBBBBB0200000007 /* TaskListView.swift */,
+				BBBBBB0200000008 /* TaskRowView.swift */,
+				BBBBBB0200000009 /* HistoryView.swift */,
+				BBBBBB0200000010 /* SettingsView.swift */,
+				BBBBBB0200000011 /* FloatingTimerView.swift */,
+				BBBBBB0200000012 /* EmptyStateView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BBBBBB0500000004 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				BBBBBB0200000013 /* ProgressBarView.swift */,
+				BBBBBB0200000014 /* CircularCheckbox.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		BBBBBB0500000005 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				BBBBBB0200000015 /* Constants.swift */,
+				BBBBBB0200000016 /* SoundManager.swift */,
+				BBBBBB0200000017 /* FloatingWindowController.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -113,7 +201,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				AAAAAA0100000001 /* FocusFriendApp.swift in Sources */,
-				AAAAAA0100000002 /* ContentView.swift in Sources */,
+				BBBBBB0100000001 /* FocusTask.swift in Sources */,
+				BBBBBB0100000002 /* AppSettings.swift in Sources */,
+				BBBBBB0100000003 /* TaskManager.swift in Sources */,
+				BBBBBB0100000004 /* TimerManager.swift in Sources */,
+				BBBBBB0100000005 /* SettingsManager.swift in Sources */,
+				BBBBBB0100000006 /* MainPanelView.swift in Sources */,
+				BBBBBB0100000007 /* TaskListView.swift in Sources */,
+				BBBBBB0100000008 /* TaskRowView.swift in Sources */,
+				BBBBBB0100000009 /* HistoryView.swift in Sources */,
+				BBBBBB0100000010 /* SettingsView.swift in Sources */,
+				BBBBBB0100000011 /* FloatingTimerView.swift in Sources */,
+				BBBBBB0100000012 /* EmptyStateView.swift in Sources */,
+				BBBBBB0100000013 /* ProgressBarView.swift in Sources */,
+				BBBBBB0100000014 /* CircularCheckbox.swift in Sources */,
+				BBBBBB0100000015 /* Constants.swift in Sources */,
+				BBBBBB0100000016 /* SoundManager.swift in Sources */,
+				BBBBBB0100000017 /* FloatingWindowController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
