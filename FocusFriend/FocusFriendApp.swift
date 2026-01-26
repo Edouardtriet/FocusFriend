@@ -50,15 +50,13 @@ struct FocusFriendApp: App {
     }
 
     private func setupTimerCompletion() {
-        timerManager.onTimerComplete = { [weak taskManager, weak settingsManager] taskId in
-            // Play completion sound
-            if let soundName = settingsManager?.alarmSound {
-                SoundManager.shared.playCompletionSound(soundName: soundName)
-            }
+        timerManager.onTimerComplete = { taskId in
+            // Play completion sound (always play, don't silently fail)
+            SoundManager.shared.playCompletionSound(soundName: self.settingsManager.alarmSound)
 
             // Mark task as complete
-            if let task = taskManager?.tasks.first(where: { $0.id == taskId }) {
-                taskManager?.completeTask(task)
+            if let task = self.taskManager.tasks.first(where: { $0.id == taskId }) {
+                self.taskManager.completeTask(task)
             }
         }
     }

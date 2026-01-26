@@ -92,9 +92,12 @@ struct HistoryItemView: View {
     }
 
     private func formatDuration(_ time: TimeInterval) -> String {
-        let minutes = Int(time) / 60
+        let totalSeconds = Int(time)
+        let minutes = totalSeconds / 60
+        let seconds = totalSeconds % 60
+
         if minutes < 1 {
-            return "<1m"
+            return "\(seconds)s"
         }
         return "\(minutes)m"
     }

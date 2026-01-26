@@ -9,6 +9,7 @@ struct TaskRowView: View {
     @State private var isHovering = false
     @State private var isEditing = false
     @State private var editedName: String = ""
+    @State private var showDeleteConfirmation = false
 
     private var isActive: Bool {
         timerManager.activeTaskId == task.id
@@ -42,6 +43,7 @@ struct TaskRowView: View {
                 CircularCheckbox(isCompleted: task.isCompleted) {
                     completeTask()
                 }
+                .accessibilityLabel(task.isCompleted ? "Mark incomplete" : "Mark complete")
 
                 // Task content
                 VStack(alignment: .leading, spacing: 6) {
@@ -96,6 +98,7 @@ struct TaskRowView: View {
                                     .cornerRadius(6)
                             }
                             .buttonStyle(.plain)
+                            .accessibilityLabel(isTimerRunning ? "Pause timer" : "Resume timer")
 
                             // Stop button
                             Button(action: stopTimer) {
@@ -107,6 +110,7 @@ struct TaskRowView: View {
                                     .cornerRadius(6)
                             }
                             .buttonStyle(.plain)
+                            .accessibilityLabel("Stop timer")
                         } else {
                             // Play button
                             Button(action: startTimer) {
@@ -118,6 +122,7 @@ struct TaskRowView: View {
                                     .cornerRadius(6)
                             }
                             .buttonStyle(.plain)
+                            .accessibilityLabel("Start timer for \(task.name)")
                         }
                     }
                 }
@@ -136,6 +141,7 @@ struct TaskRowView: View {
                 .menuStyle(.borderlessButton)
                 .tint(.textSecondary)
                 .frame(width: 28)
+                .accessibilityLabel("Task options")
             }
             .padding(.horizontal, 12)
             .padding(.vertical, 10)
@@ -146,6 +152,17 @@ struct TaskRowView: View {
             withAnimation(.easeOut(duration: 0.15)) {
                 isHovering = hovering
             }
+        }
+        .confirmationDialog("Delete Task?", isPresented: $showDeleteConfirmation, titleVisibility: .visible) {
+            Button("Delete", role: .destructive) {
+                if isActive {
+                    timerManager.stop()
+                }
+                taskManager.deleteTask(task)
+            }
+            Button("Cancel", role: .cancel) {}
+        } message: {
+            Text("Are you sure you want to delete \"\(task.name)\"?")
         }
     }
 
@@ -199,10 +216,7 @@ struct TaskRowView: View {
         Divider()
 
         Button("Delete Task", role: .destructive) {
-            if isActive {
-                timerManager.stop()
-            }
-            taskManager.deleteTask(task)
+            showDeleteConfirmation = true
         }
     }
 

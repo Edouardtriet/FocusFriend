@@ -10,18 +10,21 @@ class FloatingWindowController: ObservableObject {
     @Published var isVisible: Bool = false
 
     func show<Content: View>(content: Content) {
-        if window == nil {
-            createWindow(content: content)
+        DispatchQueue.main.async {
+            if self.window == nil {
+                self.createWindow(content: content)
+            }
+            self.window?.orderFront(nil)
+            self.isVisible = true
         }
-
-        window?.orderFront(nil)
-        isVisible = true
     }
 
     func hide() {
-        savePosition()
-        window?.orderOut(nil)
-        isVisible = false
+        DispatchQueue.main.async {
+            self.savePosition()
+            self.window?.orderOut(nil)
+            self.isVisible = false
+        }
     }
 
     func toggle<Content: View>(content: Content) {
@@ -86,6 +89,14 @@ class FloatingWindowController: ObservableObject {
               let y = dict["y"] as? CGFloat else {
             return nil
         }
-        return NSPoint(x: x, y: y)
+
+        let point = NSPoint(x: x, y: y)
+
+        // Validate position is on a visible screen
+        let isOnScreen = NSScreen.screens.contains { screen in
+            screen.frame.contains(point)
+        }
+
+        return isOnScreen ? point : nil
     }
 }

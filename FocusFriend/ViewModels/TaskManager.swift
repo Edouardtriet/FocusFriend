@@ -116,22 +116,35 @@ class TaskManager: ObservableObject {
     // MARK: - Persistence
 
     private func saveTasks() {
-        if let encoded = try? JSONEncoder().encode(tasks) {
-            UserDefaults.standard.set(encoded, forKey: tasksKey)
+        do {
+            let tasksData = try JSONEncoder().encode(tasks)
+            UserDefaults.standard.set(tasksData, forKey: tasksKey)
+        } catch {
+            print("[TaskManager] Failed to save tasks: \(error)")
         }
-        if let encoded = try? JSONEncoder().encode(completedTasks) {
-            UserDefaults.standard.set(encoded, forKey: completedTasksKey)
+
+        do {
+            let completedData = try JSONEncoder().encode(completedTasks)
+            UserDefaults.standard.set(completedData, forKey: completedTasksKey)
+        } catch {
+            print("[TaskManager] Failed to save completed tasks: \(error)")
         }
     }
 
     private func loadTasks() {
-        if let data = UserDefaults.standard.data(forKey: tasksKey),
-           let decoded = try? JSONDecoder().decode([FocusTask].self, from: data) {
-            tasks = decoded
+        if let data = UserDefaults.standard.data(forKey: tasksKey) {
+            do {
+                tasks = try JSONDecoder().decode([FocusTask].self, from: data)
+            } catch {
+                print("[TaskManager] Failed to load tasks: \(error)")
+            }
         }
-        if let data = UserDefaults.standard.data(forKey: completedTasksKey),
-           let decoded = try? JSONDecoder().decode([FocusTask].self, from: data) {
-            completedTasks = decoded
+        if let data = UserDefaults.standard.data(forKey: completedTasksKey) {
+            do {
+                completedTasks = try JSONDecoder().decode([FocusTask].self, from: data)
+            } catch {
+                print("[TaskManager] Failed to load completed tasks: \(error)")
+            }
         }
     }
 }
