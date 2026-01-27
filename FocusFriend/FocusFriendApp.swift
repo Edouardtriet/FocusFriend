@@ -42,7 +42,7 @@ struct FocusFriendApp: App {
         }
     }
 
-    private func truncateName(_ name: String, maxLength: Int = 15) -> String {
+    private func truncateName(_ name: String, maxLength: Int = 30) -> String {
         if name.count <= maxLength {
             return name
         }

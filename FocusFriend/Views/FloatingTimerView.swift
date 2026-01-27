@@ -25,7 +25,7 @@ struct FloatingTimerView: View {
                     .foregroundColor(.textPrimary)
                     .lineLimit(1)
                     .truncationMode(.tail)
-                    .frame(maxWidth: 150)
+                    .frame(maxWidth: 350)
             }
 
             // Controls (visible on hover)
