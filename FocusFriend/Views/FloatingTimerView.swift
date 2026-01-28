@@ -66,6 +66,7 @@ struct FloatingTimerView: View {
             Capsule()
                 .stroke(Color.surface, lineWidth: 1)
         )
+        .frame(minWidth: 120)
         .onHover { hovering in
             withAnimation(.easeOut(duration: 0.15)) {
                 isHovering = hovering

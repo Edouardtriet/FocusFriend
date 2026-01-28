@@ -73,7 +73,15 @@ class FloatingWindowController: ObservableObject {
 
     func updateContent<Content: View>(content: Content) {
         hostingView?.rootView = AnyView(content)
-        hostingView?.setFrameSize(hostingView?.fittingSize ?? .zero)
+        if let fittingSize = hostingView?.fittingSize, fittingSize.width > 0, fittingSize.height > 0 {
+            hostingView?.setFrameSize(fittingSize)
+            // Also update the window frame to match, preserving position
+            if let window = window {
+                var frame = window.frame
+                frame.size = fittingSize
+                window.setFrame(frame, display: true)
+            }
+        }
     }
 
     private func savePosition() {

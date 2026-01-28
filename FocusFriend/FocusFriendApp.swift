@@ -33,11 +33,19 @@ struct FocusFriendApp: App {
     @ViewBuilder
     private var menuBarLabel: some View {
         if timerManager.isRunning, let task = taskManager.tasks.first(where: { $0.id == timerManager.activeTaskId }) {
+            // Timer is running - show timer and task name
             HStack(spacing: 4) {
                 Image(systemName: "timer")
                 Text("\(timerManager.formattedRemainingTime) — \(truncateName(task.name))")
             }
+        } else if let firstTask = taskManager.tasks.first {
+            // Has tasks but timer not running - show first task name
+            HStack(spacing: 4) {
+                Image(systemName: "3.circle.fill")
+                Text(truncateName(firstTask.name))
+            }
         } else {
+            // No tasks
             Image(systemName: "3.circle.fill")
         }
     }
