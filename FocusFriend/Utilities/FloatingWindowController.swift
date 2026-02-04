@@ -40,7 +40,12 @@ class FloatingWindowController: ObservableObject {
         hostingView.setFrameSize(hostingView.fittingSize)
 
         let window = NSWindow(
-            contentRect: NSRect(x: 0, y: 0, width: 300, height: 50),
+            contentRect: NSRect(
+                x: 0,
+                y: 0,
+                width: AppConstants.floatingTimerWidth,
+                height: AppConstants.floatingTimerHeight
+            ),
             styleMask: [.borderless],
             backing: .buffered,
             defer: false

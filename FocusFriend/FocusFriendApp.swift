@@ -1,68 +1,60 @@
 import SwiftUI
+import Combine
 
 @main
 struct FocusFriendApp: App {
-    @StateObject private var taskManager = TaskManager()
-    @StateObject private var timerManager = TimerManager()
-    @StateObject private var settingsManager = SettingsManager()
-    @StateObject private var floatingWindowController = FloatingWindowController()
-
-    init() {
-        // Timer completion handler will be set up in body
-    }
+    @NSApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
 
     var body: some Scene {
-        MenuBarExtra {
-            MainPanelView(
-                taskManager: taskManager,
-                timerManager: timerManager,
-                settingsManager: settingsManager
-            )
-            .onAppear {
-                setupTimerCompletion()
-            }
-            .onChange(of: timerManager.isRunning) { isRunning in
-                updateFloatingWindow(isRunning: isRunning)
-            }
-        } label: {
-            menuBarLabel
-        }
-        .menuBarExtraStyle(.window)
-    }
-
-    @ViewBuilder
-    private var menuBarLabel: some View {
-        if timerManager.isRunning, let task = taskManager.tasks.first(where: { $0.id == timerManager.activeTaskId }) {
-            // Timer is running - show timer and task name
-            HStack(spacing: 4) {
-                Image(systemName: "timer")
-                Text("\(timerManager.formattedRemainingTime) — \(truncateName(task.name))")
-            }
-        } else if let firstTask = taskManager.tasks.first {
-            // Has tasks but timer not running - show first task name
-            HStack(spacing: 4) {
-                Image(systemName: "3.circle.fill")
-                Text(truncateName(firstTask.name))
-            }
-        } else {
-            // No tasks
-            Image(systemName: "3.circle.fill")
+        Settings {
+            EmptyView()
         }
     }
+}
 
-    private func truncateName(_ name: String, maxLength: Int = 30) -> String {
-        if name.count <= maxLength {
-            return name
-        }
-        return String(name.prefix(maxLength)) + "..."
+@MainActor
+final class AppDelegate: NSObject, NSApplicationDelegate {
+    private let taskManager = TaskManager()
+    private let timerManager = TimerManager()
+    private let settingsManager = SettingsManager()
+    private let floatingWindowController = FloatingWindowController()
+    private var menuBarController: MenuBarController?
+    private var cancellables: Set<AnyCancellable> = []
+
+    func applicationDidFinishLaunching(_ notification: Notification) {
+        menuBarController = MenuBarController(
+            taskManager: taskManager,
+            timerManager: timerManager,
+            settingsManager: settingsManager
+        )
+
+        setupTimerCompletion()
+        observeTimerState()
+        updateFloatingWindow(isRunning: timerManager.isRunning)
+    }
+
+    private func observeTimerState() {
+        timerManager.$isRunning
+            .receive(on: RunLoop.main)
+            .sink { [weak self] isRunning in
+                self?.updateFloatingWindow(isRunning: isRunning)
+            }
+            .store(in: &cancellables)
+
+        settingsManager.$settings
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                self.updateFloatingWindow(isRunning: self.timerManager.isRunning)
+            }
+            .store(in: &cancellables)
     }
 
     private func setupTimerCompletion() {
-        timerManager.onTimerComplete = { taskId in
-            // Play completion sound (always play, don't silently fail)
+        timerManager.onTimerComplete = { [weak self] taskId in
+            guard let self = self else { return }
             SoundManager.shared.playCompletionSound(soundName: self.settingsManager.alarmSound)
 
-            // Mark task as complete
             if let task = self.taskManager.tasks.first(where: { $0.id == taskId }) {
                 self.taskManager.completeTask(task)
             }

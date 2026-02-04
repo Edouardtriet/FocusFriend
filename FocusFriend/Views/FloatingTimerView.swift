@@ -57,6 +57,11 @@ struct FloatingTimerView: View {
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 10)
+        .frame(
+            width: AppConstants.floatingTimerWidth,
+            height: AppConstants.floatingTimerHeight,
+            alignment: .leading
+        )
         .background(
             Capsule()
                 .fill(Color.panelBackground)
@@ -66,7 +71,6 @@ struct FloatingTimerView: View {
             Capsule()
                 .stroke(Color.surface, lineWidth: 1)
         )
-        .frame(minWidth: 120)
         .onHover { hovering in
             withAnimation(.easeOut(duration: 0.15)) {
                 isHovering = hovering

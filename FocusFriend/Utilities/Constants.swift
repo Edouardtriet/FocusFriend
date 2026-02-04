@@ -14,8 +14,10 @@ extension Color {
 
 enum AppConstants {
     static let panelWidth: CGFloat = 320
-    static let panelHeight: CGFloat = 400
+    static let panelHeight: CGFloat = 600
     static let cornerRadius: CGFloat = 12
     static let spacing: CGFloat = 12
     static let padding: CGFloat = 16
+    static let floatingTimerWidth: CGFloat = 600
+    static let floatingTimerHeight: CGFloat = 50
 }

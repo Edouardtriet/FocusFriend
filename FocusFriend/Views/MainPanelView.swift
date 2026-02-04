@@ -50,6 +50,7 @@ struct MainPanelView: View {
             footerView
         }
         .frame(width: AppConstants.panelWidth, height: AppConstants.panelHeight)
+        .fixedSize()
         .background(Color.panelBackground)
     }
 
@@ -105,21 +106,24 @@ struct MainPanelView: View {
 
     @ViewBuilder
     private var contentView: some View {
-        switch currentTab {
-        case .tasks:
-            ScrollView {
-                TaskListView(
-                    taskManager: taskManager,
-                    timerManager: timerManager,
-                    settingsManager: settingsManager
-                )
-                .padding(.vertical, 8)
+        Group {
+            switch currentTab {
+            case .tasks:
+                ScrollView {
+                    TaskListView(
+                        taskManager: taskManager,
+                        timerManager: timerManager,
+                        settingsManager: settingsManager
+                    )
+                    .padding(.vertical, 8)
+                }
+            case .history:
+                HistoryView(taskManager: taskManager)
+            case .settings:
+                SettingsView(settingsManager: settingsManager)
             }
-        case .history:
-            HistoryView(taskManager: taskManager)
-        case .settings:
-            SettingsView(settingsManager: settingsManager)
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
     private var footerView: some View {
