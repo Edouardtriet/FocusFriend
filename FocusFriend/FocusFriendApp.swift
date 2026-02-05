@@ -54,10 +54,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         timerManager.onTimerComplete = { [weak self] taskId in
             guard let self = self else { return }
             SoundManager.shared.playCompletionSound(soundName: self.settingsManager.alarmSound)
-
-            if let task = self.taskManager.tasks.first(where: { $0.id == taskId }) {
-                self.taskManager.completeTask(task)
-            }
+            // Task completion is now manual - user clicks checkbox when ready
         }
     }
 
